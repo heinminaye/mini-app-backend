@@ -1,15 +1,28 @@
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./models/index');
+const { sequelize, User } = require('./models');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(cors());
 app.use(express.json());
 
-sequelize.sync({ alter: true }).then(() => { console.log('Database synced') });
+sequelize.sync().then(() => {
+  User.findAll().then(async (data) => {
+    if (data.length === 0) {
+      const hashedPassword = await bcrypt.hash('password', 10);
+      await User.create({
+        email: 'test@gmail.com',
+        username: 'test',
+        password: hashedPassword
+      });
+      console.log('Default user created');
+    }
+  });
+});
+
+app.get('/', (req, res) => res.send('Server running'));
 
 const port = process.env.PORT || 3030;
 app.listen(port, () => {
