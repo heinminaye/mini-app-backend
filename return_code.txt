@@ -1,0 +1,5 @@
+returncode
+200 = "Success"
+300 = "Invalid Token or Token not found"
+302 = "Token expired"
+401 = "Failed"

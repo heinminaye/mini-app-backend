@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res.status(401).json({ message: "Token not found" });
+    return res.status(401).json({returncode:"300", message: "Token not found" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
-      return res.status(401).json({ message: "Token expired" });
+      return res.status(401).json({returncode:"301", message: "Token expired" });
     }
-    return res.status(401).json({ message: "Invalid token" });
+    return res.status(401).json({returncode:"300", message: "Invalid token" });
   }
 };
