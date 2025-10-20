@@ -4,6 +4,8 @@ const { sequelize, User } = require('./models');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const userRoutes = require("./routes/user");
+const seedTranslations = require('./scripts/seedTranslations');
+const { loadTranslations } = require('./services/translateService');
 
 const app = express();
 app.use(cors());
@@ -12,7 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', userRoutes);
 
-sequelize.sync().then(() => {
+sequelize.sync().then(async () => {
+  
+  await seedTranslations();
+
+  await loadTranslations();
+
   User.findAll().then(async (data) => {
     if (data.length === 0) {
       const hashedPassword = await bcrypt.hash('password', 10);
