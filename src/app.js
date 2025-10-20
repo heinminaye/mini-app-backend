@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user");
 const translationRoutes = require("./routes/translation");
 const seedTranslations = require('./scripts/seedTranslations');
 const { loadAllTranslations } = require('./services/translateService');
+const seedTerms = require('./scripts/seedTerms');
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,8 @@ app.use('/translation', translationRoutes);
 sequelize.sync().then(async () => {
 
   await seedTranslations();
+
+  await seedTerms();
 
   await loadAllTranslations();
 
