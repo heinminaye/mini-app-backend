@@ -33,13 +33,31 @@ const translationsData = {
     en: "Server error, please try again later",
     sv: "Serverfel, försök igen senare",
   },
+  "login.accept_terms_1": {
+    en: "I accept the",
+    sv: "Jag accepterar",
+  },
+  "login.terms_link": {
+    en: "Terms & Conditions",
+    sv: "Allmänna villkor",
+  },
+  "login.error_required_terms": {
+    en: "You must accept the terms and conditions",
+    sv: "Du måste acceptera villkoren",
+  },
   // Totken
   "token.not_found": { en: "Token not found", sv: "Token hittades inte" },
   "token.expired": { en: "Token expired", sv: "Token har gått ut" },
   "token.invalid": { en: "Invalid token", sv: "Ogiltig token" },
   // Terms
-  "terms.success": { en: "Terms fetched successfully", sv: "Villkor hämtades framgångsrikt" },
-  "terms.error": { en: "Failed to fetch terms", sv: "Misslyckades att hämta villkor" },
+  "terms.success": {
+    en: "Terms fetched successfully",
+    sv: "Villkor hämtades framgångsrikt",
+  },
+  "terms.error": {
+    en: "Failed to fetch terms",
+    sv: "Misslyckades att hämta villkor",
+  },
 };
 
 async function seedTranslations() {
