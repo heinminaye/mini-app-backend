@@ -1,38 +1,47 @@
 const Translation = require('../models').Translation;
 
-let translationCache = {};
+let allTranslations = {};
+let currentLang = 'en';
 
-async function loadTranslations() {
+async function loadAllTranslations() {
   try {
     const translations = await Translation.findAll();
-    translationCache = {};
+    allTranslations = {};
     
     translations.forEach(item => {
-      translationCache[item.key] = item.values;
+      allTranslations[item.key] = item.values;
     });
     
-    console.log('Translations loaded from database');
+    console.log('All translations loaded from database');
   } catch (error) {
     console.error('Error loading translations:', error);
   }
 }
 
-async function translate(key, lang = "en") {
-  if (translationCache[key]) {
-    return translationCache[key][lang] || translationCache[key]["en"] || key;
+function translate(key, lang = currentLang) {
+  const translation = allTranslations[key];
+  if (translation) {
+    return translation[lang] || translation['en'] || key;
   }
-
-  try {
-    const translation = await Translation.findByPk(key);
-    if (translation) {
-      translationCache[key] = translation.values;
-      return translation.values[lang] || translation.values["en"] || key;
-    }
-    return key;
-  } catch (error) {
-    console.error('Translation error:', error);
-    return key;
-  }
+  return key;
 }
 
-module.exports = { translate, loadTranslations };
+function setLanguage(lang) {
+  currentLang = lang;
+  console.log(`Language changed to: ${lang}`);
+}
+
+function getAllTranslations(lang = currentLang) {
+  const result = {};
+  for (const [key, values] of Object.entries(allTranslations)) {
+    result[key] = values[lang] || values['en'] || key;
+  }
+  return result;
+}
+
+module.exports = { 
+  translate, 
+  loadAllTranslations, 
+  setLanguage,
+  getAllTranslations 
+};
