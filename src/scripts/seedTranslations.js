@@ -1,6 +1,7 @@
 const Translation = require("../models").Translation;
 
 const translationsData = {
+  // Login
   "login.title": { en: "Login", sv: "Logga in" },
   "login.email_label": { en: "Email", sv: "E-post" },
   "login.email_placeholder": {
@@ -32,9 +33,13 @@ const translationsData = {
     en: "Server error, please try again later",
     sv: "Serverfel, försök igen senare",
   },
+  // Totken
   "token.not_found": { en: "Token not found", sv: "Token hittades inte" },
   "token.expired": { en: "Token expired", sv: "Token har gått ut" },
   "token.invalid": { en: "Invalid token", sv: "Ogiltig token" },
+  // Terms
+  "terms.success": { en: "Terms fetched successfully", sv: "Villkor hämtades framgångsrikt" },
+  "terms.error": { en: "Failed to fetch terms", sv: "Misslyckades att hämta villkor" },
 };
 
 async function seedTranslations() {

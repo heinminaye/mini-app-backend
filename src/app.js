@@ -5,6 +5,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const userRoutes = require("./routes/user");
 const translationRoutes = require("./routes/translation");
+const termsRoutes = require('./routes/terms')
 const seedTranslations = require('./scripts/seedTranslations');
 const { loadAllTranslations } = require('./services/translateService');
 const seedTerms = require('./scripts/seedTerms');
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', userRoutes);
 app.use('/translation', translationRoutes);
+app.use('/terms',termsRoutes)
 
 sequelize.sync().then(async () => {
 
