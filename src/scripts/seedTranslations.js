@@ -67,6 +67,57 @@ const translationsData = {
   "menu.reports": { en: "Reports", sv: "Rapporter" },
   "menu.settings": { en: "Settings", sv: "Inställningar" },
   "menu.logout": { en: "Logout", sv: "Logga ut" },
+  // Pricelist
+  "pricelist.fetch_success": {
+    en: "Price list fetched successfully",
+    sv: "Prislista hämtades framgångsrikt",
+  },
+  "pricelist.error_fetch": {
+    en: "Failed to fetch price list",
+    sv: "Misslyckades att hämta prislista",
+  },
+  "pricelist.update_success": {
+    en: "Price list updated successfully",
+    sv: "Prislista uppdaterades framgångsrikt",
+  },
+  "pricelist.create_success": {
+    en: "New item added to price list",
+    sv: "Ny artikel lades till i prislistan",
+  },
+  "pricelist.delete_success": {
+    en: "Item deleted from price list",
+    sv: "Artikel raderades från prislistan",
+  },
+  "pricelist.error_not_found": {
+    en: "Price list item not found",
+    sv: "Artikel hittades inte i prislistan",
+  },
+  "pricelist.error_server": {
+    en: "Server error while processing price list",
+    sv: "Serverfel vid bearbetning av prislista",
+  },
+  "pricelist.error_duplicate_articleNo": {
+    en: "Article number already exists",
+    sv: "Artikelnummer finns redan",
+  },
+  
+  // Pricelist UI Labels
+  "pricelist.title": { en: "Price List", sv: "Prislista" },
+  "pricelist.button_add": { en: "Add", sv: "Lägg till" },
+  "pricelist.button_edit": { en: "Edit", sv: "Redigera" },
+  "pricelist.button_delete": { en: "Delete", sv: "Radera" },
+  "pricelist.button_save": { en: "Save", sv: "Spara" },
+  "pricelist.button_cancel": { en: "Cancel", sv: "Avbryt" },
+  "pricelist.button_print": { en: "Print", sv: "Skriv ut" },
+
+  // Pricelist Table Columns
+  "pricelist.column_articleNo": { en: "Article No", sv: "Artikelnummer" },
+  "pricelist.column_productService": { en: "Product / Service", sv: "Produkt / Tjänst" },
+  "pricelist.column_inPrice": { en: "In Price", sv: "Inköpspris" },
+  "pricelist.column_price": { en: "Price", sv: "Pris" },
+  "pricelist.column_unit": { en: "Unit", sv: "Enhet" },
+  "pricelist.column_inStock": { en: "In Stock", sv: "I lager" },
+  "pricelist.column_description": { en: "Description", sv: "Beskrivning" },
 };
 
 async function seedTranslations() {
@@ -75,9 +126,7 @@ async function seedTranslations() {
     const existingCount = await Translation.count();
 
     if (existingCount > 0) {
-      console.log(
-        `Translations already exist (${existingCount} records).`
-      );
+      console.log(`Translations already exist (${existingCount} records).`);
       return;
     }
 

@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const userRoutes = require("./routes/user");
 const translationRoutes = require("./routes/translation");
 const termsRoutes = require('./routes/terms')
+const priceListRoutes = require('./routes/priceList')
 const seedTranslations = require('./scripts/seedTranslations');
 const { loadAllTranslations } = require('./services/translateService');
 const seedTerms = require('./scripts/seedTerms');
@@ -17,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', userRoutes);
 app.use('/translation', translationRoutes);
-app.use('/terms',termsRoutes)
+app.use('/terms', termsRoutes)
+app.use('/pricelist',priceListRoutes)
 
 sequelize.sync().then(async () => {
 
