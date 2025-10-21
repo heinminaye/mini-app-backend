@@ -39,6 +39,10 @@ router.post("/login", validation(loginSchema, "login"), async (req, res) => {
     res.json({
       returncode: "200",
       message: await translate("login.success", lang),
+      user: {
+        name: user.username,
+        email: user.email
+      },
       token
     });
   } catch (err) {

@@ -58,6 +58,15 @@ const translationsData = {
     en: "Failed to fetch terms",
     sv: "Misslyckades att hämta villkor",
   },
+  // Menu
+  "menu.dashboard": { en: "Dashboard", sv: "Instrumentbräda" },
+  "menu.invoices": { en: "Invoices", sv: "Fakturor" },
+  "menu.customers": { en: "Customers", sv: "Kunder" },
+  "menu.products": { en: "Products", sv: "Produkter" },
+  "menu.priceList": { en: "Price List", sv: "Prislista" },
+  "menu.reports": { en: "Reports", sv: "Rapporter" },
+  "menu.settings": { en: "Settings", sv: "Inställningar" },
+  "menu.logout": { en: "Logout", sv: "Logga ut" },
 };
 
 async function seedTranslations() {
