@@ -17,20 +17,20 @@ const Pricelist = (sequelize) => {
       allowNull: false,
     },
     inPrice: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
     },
     price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
     },
     unit: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     inStock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
     },
     description: {
       type: DataTypes.STRING,

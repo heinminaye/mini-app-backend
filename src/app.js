@@ -10,6 +10,7 @@ const priceListRoutes = require('./routes/priceList')
 const seedTranslations = require('./scripts/seedTranslations');
 const { loadAllTranslations } = require('./services/translateService');
 const seedTerms = require('./scripts/seedTerms');
+const seedPricelist = require('./scripts/seedPriceList');
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,8 @@ sequelize.sync().then(async () => {
   await seedTranslations();
 
   await seedTerms();
+
+  // await seedPricelist();
 
   await loadAllTranslations();
 

@@ -68,6 +68,48 @@ const translationsData = {
   "menu.settings": { en: "Settings", sv: "Inställningar" },
   "menu.logout": { en: "Logout", sv: "Logga ut" },
   // Pricelist
+  "pricelist.title": { en: "Price List", sv: "Prislista" },
+
+  "pricelist.button_add": { en: "Add", sv: "Lägg till" },
+  "pricelist.button_edit": { en: "Edit", sv: "Redigera" },
+  "pricelist.button_delete": { en: "Delete", sv: "Radera" },
+  "pricelist.button_save": { en: "Save", sv: "Spara" },
+  "pricelist.button_cancel": { en: "Cancel", sv: "Avbryt" },
+  "pricelist.button_print": { en: "Print", sv: "Skriv ut" },
+  "pricelist.button_saving": { en: "Saving...", sv: "Sparar..." },
+  "pricelist.button_editing": { en: "Editing...", sv: "Redigerar..." },
+  "pricelist.confirm_delete": {
+    en: "Do you want to delete this item with ID",
+    sv: "Vill du ta bort den här artikeln med ID",
+  },
+
+  "pricelist.column_articleNo": { en: "Article No", sv: "Artikelnummer" },
+  "pricelist.column_productService": {
+    en: "Product / Service",
+    sv: "Produkt / Tjänst",
+  },
+  "pricelist.column_inPrice": { en: "In Price", sv: "Inköpspris" },
+  "pricelist.column_price": { en: "Price", sv: "Pris" },
+  "pricelist.column_unit": { en: "Unit", sv: "Enhet" },
+  "pricelist.column_inStock": { en: "In Stock", sv: "I lager" },
+  "pricelist.column_description": { en: "Description", sv: "Beskrivning" },
+  "pricelist.column_actions": { en: "Actions", sv: "Åtgärder" },
+
+  "pricelist.form_add_title": {
+    en: "Add New Item",
+    sv: "Lägg till ny artikel",
+  },
+  "pricelist.form_edit_title": { en: "Edit Item", sv: "Redigera artikel" },
+  "pricelist.search_placeholder": { en: "Search...", sv: "Sök..." },
+  "pricelist.error_required_articleNo": {
+    en: "Article number is required",
+    sv: "Artikelnummer krävs",
+  },
+  "pricelist.error_required_productService": {
+    en: "Product/Service is required",
+    sv: "Produkt/Tjänst krävs",
+  },
+
   "pricelist.fetch_success": {
     en: "Price list fetched successfully",
     sv: "Prislista hämtades framgångsrikt",
@@ -100,24 +142,6 @@ const translationsData = {
     en: "Article number already exists",
     sv: "Artikelnummer finns redan",
   },
-  
-  // Pricelist UI Labels
-  "pricelist.title": { en: "Price List", sv: "Prislista" },
-  "pricelist.button_add": { en: "Add", sv: "Lägg till" },
-  "pricelist.button_edit": { en: "Edit", sv: "Redigera" },
-  "pricelist.button_delete": { en: "Delete", sv: "Radera" },
-  "pricelist.button_save": { en: "Save", sv: "Spara" },
-  "pricelist.button_cancel": { en: "Cancel", sv: "Avbryt" },
-  "pricelist.button_print": { en: "Print", sv: "Skriv ut" },
-
-  // Pricelist Table Columns
-  "pricelist.column_articleNo": { en: "Article No", sv: "Artikelnummer" },
-  "pricelist.column_productService": { en: "Product / Service", sv: "Produkt / Tjänst" },
-  "pricelist.column_inPrice": { en: "In Price", sv: "Inköpspris" },
-  "pricelist.column_price": { en: "Price", sv: "Pris" },
-  "pricelist.column_unit": { en: "Unit", sv: "Enhet" },
-  "pricelist.column_inStock": { en: "In Stock", sv: "I lager" },
-  "pricelist.column_description": { en: "Description", sv: "Beskrivning" },
 };
 
 async function seedTranslations() {

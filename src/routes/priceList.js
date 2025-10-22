@@ -4,17 +4,20 @@ const Joi = require("joi");
 const tokenCheck = require("../middleware/tokenCheck");
 const validation = require("../middleware/validation");
 const { translate } = require("../services/translateService");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
 const pricelistSchema = Joi.object({
   articleNo: Joi.string().required().label("error_required_articleNo"),
-  productService: Joi.string().required().label("error_required_productService"),
+  productService: Joi.string()
+    .required()
+    .label("error_required_productService"),
   inPrice: Joi.number().allow(null),
   price: Joi.number().allow(null),
   unit: Joi.string().allow(null, ""),
   inStock: Joi.number().integer().allow(null),
-  description: Joi.string().allow(null, "")
+  description: Joi.string().allow(null, ""),
 });
 
 router.get("/", tokenCheck, async (req, res) => {
@@ -28,7 +31,7 @@ router.get("/", tokenCheck, async (req, res) => {
       where[Op.or] = [
         { articleNo: { [Op.like]: `%${search}%` } },
         { productService: { [Op.like]: `%${search}%` } },
-        { description: { [Op.like]: `%${search}%` } }
+        { description: { [Op.like]: `%${search}%` } },
       ];
     }
 
@@ -51,67 +54,82 @@ router.get("/", tokenCheck, async (req, res) => {
   }
 });
 
-router.post("/", tokenCheck, validation(pricelistSchema, "pricelist"), async (req, res) => {
-  const lang = req.headers["accept-language"] || "en";
-  try {
-    const exists = await Pricelist.findOne({ where: { articleNo: req.body.articleNo } });
-    if (exists) {
-      return res.status(400).json({
-        returncode: "401",
-        message: await translate("pricelist.error_duplicate_articleNo", lang),
+router.post(
+  "/",
+  tokenCheck,
+  validation(pricelistSchema, "pricelist"),
+  async (req, res) => {
+    const lang = req.headers["accept-language"] || "en";
+    try {
+      const exists = await Pricelist.findOne({
+        where: { articleNo: req.body.articleNo },
+      });
+      if (exists) {
+        return res.status(400).json({
+          returncode: "401",
+          message: await translate("pricelist.error_duplicate_articleNo", lang),
+        });
+      }
+
+      const newItem = await Pricelist.create(req.body);
+      res.json({
+        returncode: "200",
+        message: await translate("pricelist.create_success", lang),
+        data: newItem,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        returncode: "500",
+        message: await translate("pricelist.error_server", lang),
       });
     }
-
-    const newItem = await Pricelist.create(req.body);
-    res.json({
-      returncode: "200",
-      message: await translate("pricelist.create_success", lang),
-      data: newItem,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      returncode: "500",
-      message: await translate("pricelist.error_server", lang),
-    });
   }
-});
+);
 
-router.put("/:id", tokenCheck, validation(pricelistSchema, "pricelist"), async (req, res) => {
-  const lang = req.headers["accept-language"] || "en";
-  try {
-    const item = await Pricelist.findByPk(req.params.id);
-    if (!item) {
-      return res.status(404).json({
-        returncode: "401",
-        message: await translate("pricelist.error_not_found", lang),
+router.put(
+  "/:id",
+  tokenCheck,
+  validation(pricelistSchema, "pricelist"),
+  async (req, res) => {
+    const lang = req.headers["accept-language"] || "en";
+    try {
+      const item = await Pricelist.findByPk(req.params.id);
+      if (!item) {
+        return res.status(404).json({
+          returncode: "401",
+          message: await translate("pricelist.error_not_found", lang),
+        });
+      }
+
+      const duplicate = await Pricelist.findOne({
+        where: {
+          articleNo: req.body.articleNo,
+          id: { [Op.ne]: req.params.id },
+        },
+      });
+      if (duplicate) {
+        return res.status(400).json({
+          returncode: "401",
+          message: await translate("pricelist.error_duplicate_articleNo", lang),
+        });
+      }
+
+      await item.update(req.body);
+      res.json({
+        returncode: "200",
+        message: await translate("pricelist.update_success", lang),
+        data: item,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        returncode: "500",
+        message: await translate("pricelist.error_server", lang),
       });
     }
-
-    const duplicate = await Pricelist.findOne({
-      where: { articleNo: req.body.articleNo, id: { [require("sequelize").Op.ne]: req.params.id } },
-    });
-    if (duplicate) {
-      return res.status(400).json({
-        returncode: "401",
-        message: await translate("pricelist.error_duplicate_articleNo", lang),
-      });
-    }
-
-    await item.update(req.body);
-    res.json({
-      returncode: "200",
-      message: await translate("pricelist.update_success", lang),
-      data: item,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      returncode: "500",
-      message: await translate("pricelist.error_server", lang),
-    });
   }
-});
+);
 
 router.delete("/:id", tokenCheck, async (req, res) => {
   const lang = req.headers["accept-language"] || "en";
