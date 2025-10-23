@@ -92,6 +92,10 @@ const translationsData = {
     en: "Failed to fetch terms",
     sv: "Misslyckades att hämta villkor",
   },
+  "terms.closeAndGoBack": {
+    en: "Close and Go Back",
+    sv: "Stäng och gå tillbaka",
+  },
   // Menu
   "menu.dashboard": { en: "Dashboard", sv: "Instrumentbräda" },
   "menu.invoices": { en: "Invoices", sv: "Fakturor" },
