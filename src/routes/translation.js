@@ -37,7 +37,7 @@ router.get("/support", (req, res) => {
       },
       { 
         code: "sv", 
-        name: "Swedish",
+        name: "Svenska",
         flag: "https://storage.123fakturere.no/public/flags/SE.png"
       }
     ]

@@ -2,16 +2,22 @@ const Translation = require("../models").Translation;
 
 const translationsData = {
   // Login
-  "login.title": { en: "Login", sv: "Logga in" },
-  "login.email_label": { en: "Email", sv: "E-post" },
-  "login.email_placeholder": {
-    en: "Enter your email",
+  "login.title": { en: "Log In", sv: "Logga in" },
+  "login.email_label": {
+    en: "Enter your email address",
     sv: "Ange din e-postadress",
   },
-  "login.password_label": { en: "Password", sv: "Lösenord" },
-  "login.password_placeholder": {
+  "login.email_placeholder": {
+    en: "Email address",
+    sv: "E-postadress",
+  },
+  "login.password_label": {
     en: "Enter your password",
     sv: "Ange ditt lösenord",
+  },
+  "login.password_placeholder": {
+    en: "Password",
+    sv: "Lösenord",
   },
   "login.button": { en: "Log In", sv: "Logga in" },
   "login.loading": { en: "Logging in...", sv: "Loggar in..." },
@@ -25,9 +31,13 @@ const translationsData = {
     en: "Password is required",
     sv: "Lösenord krävs",
   },
-  "login.error_min_password": {
-    en: "Password must be at least 6 characters",
-    sv: "Lösenordet måste vara minst 6 tecken",
+  "forgot_password.title": {
+    en: "Forgotten password?",
+    sv: "Glömt lösenord?",
+  },
+  "register.button": {
+    en: "Register",
+    sv: "Registrera",
   },
   "login.error_server": {
     en: "Server error, please try again later",
@@ -44,6 +54,30 @@ const translationsData = {
   "login.error_required_terms": {
     en: "You must accept the terms and conditions",
     sv: "Du måste acceptera villkoren",
+  },
+  "login.footer_rights": {
+    en: "All rights reserved.",
+    sv: "Alla rättigheter förbehållna.",
+  },
+  "navbar.home": {
+    en: "Home",
+    sv: "Hem",
+  },
+  "navbar.order": {
+    en: "Order",
+    sv: "Beställning",
+  },
+  "navbar.customers": {
+    en: "Our Customers",
+    sv: "Våra kunder",
+  },
+  "navbar.about": {
+    en: "About Us",
+    sv: "Om oss",
+  },
+  "navbar.contact": {
+    en: "Contact Us",
+    sv: "Kontakta oss",
   },
   // Totken
   "token.not_found": { en: "Token not found", sv: "Token hittades inte" },

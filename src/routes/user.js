@@ -10,7 +10,7 @@ const router = express.Router();
 
 const loginSchema = Joi.object({
   email: Joi.string().email({ tlds: { allow: false } }).required().label("error_required_email"),
-  password: Joi.string().min(6).required().label("error_required_password")
+  password: Joi.string().required().label("error_required_password")
 });
 
 router.post("/login", validation(loginSchema, "login"), async (req, res) => {
