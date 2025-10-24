@@ -22,17 +22,20 @@ const pricelistSchema = Joi.object({
 
 router.get("/", tokenCheck, async (req, res) => {
   const lang = req.headers["accept-language"] || "en";
-  const { search } = req.query;
+  const { articleSearch, productSearch } = req.query;
 
   try {
     const where = {};
 
-    if (search) {
-      where[Op.or] = [
-        { articleNo: { [Op.like]: `%${search}%` } },
-        { productService: { [Op.like]: `%${search}%` } },
-        { description: { [Op.like]: `%${search}%` } },
+    if (articleSearch && productSearch) {
+      where[Op.and] = [
+        { articleNo: { [Op.like]: `%${articleSearch}%` } },
+        { productService: { [Op.like]: `%${productSearch}%` } },
       ];
+    } else if (articleSearch) {
+      where.articleNo = { [Op.like]: `%${articleSearch}%` };
+    } else if (productSearch) {
+      where.productService = { [Op.like]: `%${productSearch}%` };
     }
 
     const items = await Pricelist.findAll({
@@ -139,7 +142,7 @@ router.delete("/:id", tokenCheck, async (req, res) => {
     if (!item) {
       return res.status(300).json({
         returncode: "401",
-        message: await translate("pricelist.error_not_found", lang)
+        message: await translate("pricelist.error_not_found", lang),
       });
     }
 
@@ -147,13 +150,13 @@ router.delete("/:id", tokenCheck, async (req, res) => {
 
     res.json({
       returncode: "200",
-      message: await translate("pricelist.delete_success", lang)
+      message: await translate("pricelist.delete_success", lang),
     });
   } catch (err) {
     console.error(err);
     res.status(500).json({
       returncode: "500",
-      message: await translate("pricelist.error_server", lang)
+      message: await translate("pricelist.error_server", lang),
     });
   }
 });

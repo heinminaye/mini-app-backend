@@ -23,8 +23,8 @@ const translationsData = {
   "login.loading": { en: "Logging in...", sv: "Loggar in..." },
   "login.success": { en: "Login successful", sv: "Inloggning lyckades" },
   "login.error_invalid": {
-    en: "Invalid email or password",
-    sv: "Ogiltig e-post eller lösenord",
+    en: "Enter a valid email",
+    sv: "Ange en giltig e-postadress",
   },
   "login.error_required_email": { en: "Email is required", sv: "E-post krävs" },
   "login.error_required_password": {
@@ -97,6 +97,10 @@ const translationsData = {
     sv: "Stäng och gå tillbaka",
   },
   // Menu
+  "menu.header": {
+    en: "Menu",
+    sv: "Meny",
+  },
   "menu.dashboard": { en: "Dashboard", sv: "Instrumentbräda" },
   "menu.invoices": { en: "Invoices", sv: "Fakturor" },
   "menu.customers": { en: "Customers", sv: "Kunder" },
@@ -108,12 +112,21 @@ const translationsData = {
   // Pricelist
   "pricelist.title": { en: "Price List", sv: "Prislista" },
 
-  "pricelist.button_add": { en: "Add", sv: "Lägg till" },
+  "pricelist.button_add": { en: "New Product", sv: "Lägg till" },
+  "pricelist.button_print": { en: "Print List", sv: "Skriv ut" },
+  "pricelist.button_advance": { en: "Advance Mode", sv: "Skriv ut" },
+  "pricelist.search_article": {
+    en: "Search Article No...",
+    sv: "Sök artikelnummer...",
+  },
+  "pricelist.search_product": {
+    en: "Search Product...",
+    sv: "Sök produkt...",
+  },
   "pricelist.button_edit": { en: "Edit", sv: "Redigera" },
   "pricelist.button_delete": { en: "Delete", sv: "Radera" },
   "pricelist.button_save": { en: "Save", sv: "Spara" },
   "pricelist.button_cancel": { en: "Cancel", sv: "Avbryt" },
-  "pricelist.button_print": { en: "Print", sv: "Skriv ut" },
   "pricelist.button_saving": { en: "Saving...", sv: "Sparar..." },
   "pricelist.button_editing": { en: "Editing...", sv: "Redigerar..." },
   "pricelist.confirm_delete": {
@@ -138,7 +151,6 @@ const translationsData = {
     sv: "Lägg till ny artikel",
   },
   "pricelist.form_edit_title": { en: "Edit Item", sv: "Redigera artikel" },
-  "pricelist.search_placeholder": { en: "Search...", sv: "Sök..." },
   "pricelist.error_required_articleNo": {
     en: "Article number is required",
     sv: "Artikelnummer krävs",
